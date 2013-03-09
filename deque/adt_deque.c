@@ -60,7 +60,7 @@ struct deque *deque_new() {
  * `deque_new`.
  */
 void deque_delete(struct deque *d) {
-	
+    
     Node *tmp_node = NULL;
     
     if (d == NULL)
@@ -98,14 +98,14 @@ void deque_push_back(struct deque *d, int value) {
         assert(0);
     }
 
-	new_node = (Node *) malloc(sizeof(Node));
+    new_node = (Node *) malloc(sizeof(Node));
     
     new_node->data = value;
     new_node->prev = new_node->next = NULL;
 
     /*
-	 * check if the deque is empty
-	 */
+     * check if the deque is empty
+     */
     if (d->size == 0) {
         d->front = d->back = new_node;
         d->front->prev = d->front->next = NULL;
@@ -139,8 +139,8 @@ void deque_push_front(struct deque *d, int value) {
     new_node->prev = new_node->next = NULL;
 
     /*
-	 * check if the deque is empty
-	 */
+     * check if the deque is empty
+     */
     if (d->size == 0) {
         d->front = d->back = new_node;
         d->front->prev = d->front->next = NULL;
@@ -161,7 +161,7 @@ void deque_push_front(struct deque *d, int value) {
  * Remove the last value off of a deque and return it. O(1) complexity.
  */
 int deque_pop_back(struct deque *d) {
-	
+    
     Node *tmp_node;
     int  value = 0;
    
@@ -181,7 +181,7 @@ int deque_pop_back(struct deque *d) {
     
     value = tmp_node->data;
     free(tmp_node);
-	
+    
     d->size--;
 
     if (d->size == 0) {
@@ -220,7 +220,7 @@ int deque_pop_front(struct deque *d) {
 
     if (d->size == 0) {
         d->front = d->back = NULL;
-    }		
+    }       
 
     return value;
 }
@@ -238,35 +238,35 @@ size_t deque_size(struct deque *d) {
 
 // Example usage.
 int main() {
-	long long int i = 1;
-	long long int sum = 0;
-	struct timeval t1, t2;
-	double elapsedTime;
+    long long int i = 1;
+    long long int sum = 0;
+    struct timeval t1, t2;
+    double elapsedTime;
 
-	struct deque *d = deque_new(); // { }
+    struct deque *d = deque_new(); // { }
 
-	assert(d);
+    assert(d);
 
-	gettimeofday(&t1, NULL);
-	while( i <= 10000000) {
-		deque_push_back(d, i);
-		i++;
-	}
-	i = 1;
-	while(i <= 10000000) {
-		sum += deque_pop_back(d);
-		i++;
-	}
-	gettimeofday(&t2, NULL);
+    gettimeofday(&t1, NULL);
+    while( i <= 10000000) {
+        deque_push_back(d, i);
+        i++;
+    }
+    i = 1;
+    while(i <= 10000000) {
+        sum += deque_pop_back(d);
+        i++;
+    }
+    gettimeofday(&t2, NULL);
 
-	elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;
-	elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;
+    elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;
+    elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;
 
 
-	printf("sum is %lld %f  milli-secs\n\n", sum, elapsedTime);
+    printf("sum is %lld %f  milli-secs\n\n", sum, elapsedTime);
 
-	assert(0 == deque_size(d));
-	deque_delete(d);
-	return 0;
+    assert(0 == deque_size(d));
+    deque_delete(d);
+    return 0;
 
 }
