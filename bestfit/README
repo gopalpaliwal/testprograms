@@ -1,0 +1,28 @@
+BESTFIT README
+
+RUNNING INSTRUCTIONS:
+  Makefile has been provided. Please do below to compile program
+  --> make
+  This should create a binary file (bestfit) which can be run.
+
+Program Description:
+Please set the tapspace to 4 for indenting the program files.
+
+The Search method is implemented for an sorted array
+ -Array can be ascending or descending array.
+    When the array is ascending, the scan starts from the start. 
+    If the array is descending, the scan starts from the end.
+    Search method internally calls 3 child api's to do the test.
+    testEqual tests if the elements are equal. testLessThan tests
+    if the array element is lessThan the key and testGreaterThan
+    tests if the element is greater than key. Code duplication is
+    avoided by properly calling these api's in Search method.
+
+TESTING:
+For testing a separate test.c file is provided which implements the
+testing infrastructure.
+  testMethod can be called with the input array and the expected
+  outcome to the doUnitTest method. doUnitTest method internally
+  calls the Search method and compares the outcome with the 
+  expected results. If results are as expected, the test passes
+  else the test fails.
